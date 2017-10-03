@@ -2,25 +2,42 @@ package main
 
 import (
 	"fmt"
+	"math/big"
+	"strconv"
 )
 
-func main(){
+func main() {
 
-	fmt.Println("The factorial of is",factorial(9, 9))
+	total := new(big.Int)
+
+	fmt.Println("This Program will calculate the Factorial of any Integer Number Entered")
+	fmt.Print("Enter A Number Please: \n")
+
+	var x int
+	fmt.Scan(&x)
+
+	str := strconv.Itoa(x)
+
+	total.SetString(str, 10)
+
+	fmt.Printf("The Factorial of %d is:\n %d\n", total, factorial(total, x))
 
 }
 
-func factorial(num int, total int) int {
+func factorial(total *big.Int, x int) *big.Int {
 
-	num = num - 1
-	total = total * num
+	x = x - 1
 
-	if num != 1 {
-		factorial(num, total)
-	} else if num == 1 {
-		fmt.Println(total)
+	if x == 0 {
+
 		return total
+
 	}
 
-	return 0
+	y := new(big.Int)
+	y.SetString(strconv.Itoa(x), 10)
+
+	total = big.NewInt(0).Mul(total, y)
+
+	return factorial(total, x)
 }
