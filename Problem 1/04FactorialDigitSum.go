@@ -6,7 +6,7 @@ import (
 
 func main(){
 
-	factorial(9, 9)
+	fmt.Println("The factorial of is",factorial(9, 9))
 
 }
 
