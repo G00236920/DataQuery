@@ -27,7 +27,7 @@ func menu() {
 	case 2:
 		return
 	default:
-		fmt.Println("Incorrect Entry")
+		fmt.Println("Incorrect Entry, Try Again")
 	}
 
 	menu()
@@ -47,7 +47,7 @@ func option1() {
 
 	total.SetString(str, 10)
 
-	fmt.Printf("The Factorial of %d is:\n %d\n", total, factorial(total, x))
+	fmt.Printf("The Factorial of %d is:\n%d\n", total, factorial(total, x))
 
 }
 
