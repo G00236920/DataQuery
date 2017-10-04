@@ -2,37 +2,51 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
-func main(){
+func main() {
 
-	var randNum int 
+	game()
+}
+
+func game() {
+
 	var prevGuess int
 	var guess int
 	var count int
 
-    for i := 0; i <= 1; {
+	rand.Seed(time.Now().UnixNano())
+	randNum := rand.Intn(100-1) + 1
 
-		fmt.Printf("Please Guess a Number between 1 and %d\n", randNum)
+	for i := 0; i <= 1; {
 
-		if guess == prevGuess{
+		fmt.Println("Please Guess a Number between 1 and 100 (-1 to quit)")
+		fmt.Scan(&guess)
+
+		if guess == prevGuess {
 
 			fmt.Println("You have guess the wrong number again")
-			
-		} else{
-			
+
+		} else {
+
 			count++
 
-			if guess == randNum {
+			if guess == -1 {
+				return
+			} else if guess == randNum {
 
 				fmt.Println("WELL DONE!, You have Guessed Correctly")
-				i++
+				fmt.Print("\n\n*****   NEW GAME   *****\n\n")
+				count = 0
+				game()
 
-			} else if guess > randNum{
+			} else if guess > randNum {
 
 				fmt.Println("Your Guess was Too high")
 
-			} else{
+			} else {
 
 				fmt.Println("Your Guess was Too low")
 
@@ -41,6 +55,6 @@ func main(){
 
 		fmt.Printf("You have made %d Guesses\n", count)
 
-    }
+	}
 
 }
