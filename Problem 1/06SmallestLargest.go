@@ -5,7 +5,7 @@ import "fmt"
 type Node struct {
 	prev *Node
 	next *Node
-	key  interface{}
+	key  string
 }
 
 type List struct {
@@ -13,7 +13,7 @@ type List struct {
 	tail *Node
 }
 
-func (L *List) Insert(key interface{}) {
+func (L *List) Insert(key string) {
 	list := &Node{
 		next: L.head,
 		key:  key,
@@ -31,11 +31,40 @@ func (L *List) Insert(key interface{}) {
 }
 
 func (l *List) Show() {
+	fmt.Println()
+
 	list := l.head
 	for list != nil {
 		fmt.Printf("%+v \n", list.key)
 		list = list.next
 	}
+
+	fmt.Println()
+}
+
+func (l *List) find() {
+
+	var smallest string
+	var largest string
+
+	list := l.head
+	for list != nil {
+
+		if len(smallest) == 0 {
+			smallest = list.key
+		}
+
+		if len(list.key) < len(smallest) {
+			smallest = list.key
+		} else if len(list.key) > len(largest) {
+			largest = list.key
+		}
+
+		list = list.next
+	}
+	fmt.Println()
+	fmt.Println("The Smallest Element is: ", smallest)
+	fmt.Println("The largest Element is: ", largest)
 	fmt.Println()
 }
 
@@ -52,10 +81,13 @@ func menu() {
 	var entry string
 
 	for i := 0; i < 1; {
-
+		fmt.Println()
 		fmt.Println("Please Choose an Option")
-		fmt.Println("1. Add Element to List")
-		fmt.Println("2. Exit")
+		fmt.Println("\t1. Add Element to List")
+		fmt.Println("\t2. Display Largest and Smallest Elements (By Character Length)")
+		fmt.Println("\t3. Display the Entire List")
+		fmt.Println("\t4. Exit")
+		fmt.Println()
 		fmt.Scan(&choice)
 
 		switch choice {
@@ -64,15 +96,16 @@ func menu() {
 			fmt.Scan(&entry)
 			l.Insert(entry)
 		case 2:
+			l.find()
+		case 3:
+			l.Show()
+		case 4:
 			return
 		default:
-			fmt.Println("Invalid Option")
+			fmt.Println()
+			fmt.Println("INVALID OPTION")
+			fmt.Println()
 		}
 
-		fmt.Printf("head: %v\n", l.head.key)
-		fmt.Printf("tail: %v\n", l.tail.key)
-		l.Show()
-
 	}
-
 }
