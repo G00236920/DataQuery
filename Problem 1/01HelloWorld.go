@@ -3,12 +3,12 @@
 package main
 
 import (
-	"fmt"
+	"fmt" //import Fmt
 )
 
 func main() {
 
-	menu()
+	menu() //Call menu function
 
 }
 
@@ -17,15 +17,15 @@ func menu() {
 	fmt.Println("This Program will say 'Hello World'  in either Japanese or English")
 	fmt.Print("Enter: \n1. Japanese \n2. English: \n3. Exit \n")
 
-	var x int
-	fmt.Scan(&x)
+	var x int    //Integer value
+	fmt.Scan(&x) //Take input from user
 
 	if x == 1 {
-		fmt.Println("こんにちは, 世界")
+		fmt.Println("こんにちは, 世界") //Print Hello world in Japanese
 	} else if x == 2 {
-		fmt.Println("Hello World")
+		fmt.Println("Hello World") //Print hello world in english
 	} else {
-		return
+		return //End program by returning from the menu function
 	}
 
 	menu()
