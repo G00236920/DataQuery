@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	menu()
+	menu() //Menu Function
 
 }
 
@@ -12,10 +12,10 @@ func menu() {
 
 	var choice int
 
-	var a = [3]int{1, 4, 6}
+	var a = [3]int{1, 4, 6} //Array in go language
 	var b = [3]int{2, 3, 5}
 
-	for i := 0; i < 1; {
+	for i := 0; i < 1; { //Loop until i increments
 
 		fmt.Println()
 		fmt.Println("Please Choose an Option")
@@ -23,15 +23,15 @@ func menu() {
 		fmt.Println("\t2. Merge and Sort both Arrays")
 		fmt.Println("\t3. Exit")
 		fmt.Println()
-		fmt.Scan(&choice)
+		fmt.Scan(&choice) //User Input
 
-		switch choice {
+		switch choice { //switch depending on user input
 		case 1:
-			display(a, b)
+			display(a, b) // call display function
 		case 2:
-			sort(a, b)
+			sort(a, b) //call sort function
 		case 3:
-			return
+			return //return from menu function
 		default:
 			fmt.Println()
 			fmt.Println("INVALID OPTION")
