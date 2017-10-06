@@ -1,12 +1,11 @@
 package main
 
-import (
+import ( //multiple imports
 	"fmt"
 	"time"
 )
 
-func main() {
-	fmt.Println("Welcome to the playground!")
+func main() { //Main Function
 
-	fmt.Println("The Current time for IST is", time.Now())
+	fmt.Println("The Current time for IST is", time.Now()) //Call built in function which calls the time
 }
