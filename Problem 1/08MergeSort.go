@@ -41,11 +41,11 @@ func menu() {
 	}
 }
 
-func display(a [3]int, b [3]int) {
+func display(a [3]int, b [3]int) { //Display function
 	fmt.Println()
 	fmt.Print("List A is: \n{")
 
-	for i := 0; i < 3; i++ {
+	for i := 0; i < 3; i++ { //Print list A
 		fmt.Print(a[i], ", ")
 	}
 
@@ -53,19 +53,20 @@ func display(a [3]int, b [3]int) {
 	fmt.Println()
 	fmt.Print("List B is: \n{")
 
-	for i := 0; i < 3; i++ {
+	for i := 0; i < 3; i++ { //Print list B
 		fmt.Print(b[i], ", ")
 	}
 
 	fmt.Println("}")
 }
 
-func sort(a [3]int, b [3]int) {
+func sort(a [3]int, b [3]int) { //Sort function, pass array A and B
 	var c = [6]int{}
 
 	i, j := 0, 0
 
 	for k := 0; k < 6; k++ {
+		//If statement to compare
 		if i > len(a)-1 && j <= len(b)-1 {
 			c[k] = b[j]
 			j++
@@ -83,7 +84,7 @@ func sort(a [3]int, b [3]int) {
 
 	fmt.Print("List C is: \n{")
 
-	for i := 0; i < 6; i++ {
+	for i := 0; i < 6; i++ { //Print list C
 
 		fmt.Print(c[i], ", ")
 
