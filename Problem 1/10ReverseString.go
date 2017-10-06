@@ -15,6 +15,7 @@ func menu() {
 
 	for i := 0; i < 1; {
 
+		//Ask user for input
 		fmt.Println()
 		fmt.Println("Please Choose an Option")
 		fmt.Println("\t1. Enter a new String")
@@ -22,6 +23,7 @@ func menu() {
 		fmt.Println()
 		fmt.Scan(&choice)
 
+		//user input
 		switch choice {
 		case 1:
 			fmt.Println()
@@ -30,6 +32,7 @@ func menu() {
 			fmt.Println()
 			fmt.Print("This Word Reversed is ")
 
+			//loop through the strings to reverse the string
 			for i := len(entry) - 1; i >= 0; i-- {
 				fmt.Print(string(entry[i]))
 			}
@@ -38,6 +41,7 @@ func menu() {
 		case 2:
 			return
 		default:
+
 			fmt.Println()
 			fmt.Println("INVALID OPTION")
 			fmt.Println()
