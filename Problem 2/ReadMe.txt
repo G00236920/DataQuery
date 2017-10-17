@@ -23,19 +23,21 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 	Implementation: 
 	
+	To find a response in Curl :
+
 	- Open Terminal or Command Prompt
 	- Type :  curl -I http://localhost:8080/test
 
 	- RESULT : 
 
-		HTTP/1.1 200 OK
-		Date: Tue, 17 Oct 2017 17:09:00 GMT
-		Content-Length: 23
-		Content-Type: text/plain; charset=utf-8
+		HTTP/1.1 200 OK						—Response
+		Date: Tue, 17 Oct 2017 17:09:00 GMT			-Time
+		Content-Length: 23					-Char length	
+		Content-Type: text/plain; charset=utf-8			—Charset and type
 
 
 
-		Guessing Game test 
+		Guessing Game test 					-Body
 
 
 	
