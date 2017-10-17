@@ -44,6 +44,25 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 —Part 2—
 
+
+	Objective: 
+
+
+
+	Implementation: Change your web application to make “Guessing game” a level 1 		heading in HTML. Test your application, making sure that the HTML is rendered by 	your browser. If it isn’t, fix it.
+	
+	To find a response in Curl :
+
+	- Open Terminal or Command Prompt
+	- Type :  curl http://localhost:8080/test
+
+	- RESULT : 
+
+		Guessing Game test 					-Body
+
+
+	This time the Text will be a level 1 Header.
+
 —Part 3—
 
 —Part 4—
