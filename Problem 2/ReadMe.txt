@@ -19,7 +19,10 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 	Objective: 
 
-	Create a web application in Go that responds with the text “Guessing 	game”. 		This should be the response body irrespective of what request is received. 		Explain in your README how to examine the response, including the headers, using 	curl.
+	Create a web application in Go that responds with the text “Guessing game”. 		
+	This should be the response body irrespective of what request is received. 		
+	Explain in your README how to examine the response, including the headers, 
+	using curl.
 
 	Implementation: 
 	
@@ -39,17 +42,19 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 		Guessing Game test 					-Body
 
-
 	
 
 —Part 2—
 
 
 	Objective: 
+	
+	Change your web application to make “Guessing game” a level 1 		
+	heading in HTML. Test your application, making sure that the HTML is rendered by 		
+	your browser. If it isn’t, fix it.
 
 
-
-	Implementation: Change your web application to make “Guessing game” a level 1 		heading in HTML. Test your application, making sure that the HTML is rendered by 	your browser. If it isn’t, fix it.
+	Implementation: 
 	
 	To find a response in Curl :
 
@@ -64,6 +69,26 @@ This project is based off a problem sheet we have been given by our lecturer for
 	This time the Text will be a level 1 Header.
 
 —Part 3—
+
+	Objective: 
+
+	Change the web application to serve a web page rather than hard-coding the text 	
+	into the web application executable. Use the Bootstrap starter template, changing 	
+	the header to say “Guessing game”. Add a link on the page to the relative URL /		
+	guess with the text “New game”. Have this page served as the root resource in the 	
+	web application.
+
+
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open Terminal or Command Prompt
+	- Type :  curl http://localhost:8080/guess/
+
+	- RESULT : 
+
+
 
 —Part 4—
 
