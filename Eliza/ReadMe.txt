@@ -1,6 +1,0 @@
-ELIZA
-
-
-**Getting Started**
-
-
