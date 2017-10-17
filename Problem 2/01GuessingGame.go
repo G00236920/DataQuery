@@ -7,7 +7,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) { //Handler function
 
-	fmt.Fprintf(w, "Guessing Game 3 %s", r.URL.Path[1:]) //Print formatted Text to the body
+	fmt.Fprintf(w, "\n\nGuessing Game %s \n\n", r.URL.Path[1:]) //Print formatted Text to the body
 
 }
 
