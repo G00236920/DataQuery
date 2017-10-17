@@ -24,9 +24,19 @@ This project is based off a problem sheet we have been given by our lecturer for
 	Implementation: 
 	
 	- Open Terminal or Command Prompt
-	- Type :  curl http://localhost:8080/test
+	- Type :  curl -I http://localhost:8080/test
 
-	- RESULT : Guessing Game test 
+	- RESULT : 
+
+		HTTP/1.1 200 OK
+		Date: Tue, 17 Oct 2017 17:09:00 GMT
+		Content-Length: 23
+		Content-Type: text/plain; charset=utf-8
+
+
+
+		Guessing Game test 
+
 
 	
 
