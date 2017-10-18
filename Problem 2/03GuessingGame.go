@@ -12,12 +12,12 @@ type Page struct {											//Page Struct to store attributes of the page
 }
 
 func (p *Page) save() error {								// write to a page 
-	filename := p.Title + ".txt"
+	filename := p.Title + ".html"
 	return ioutil.WriteFile(filename, p.Body, 0600)
 }
 
 func loadPage(title string) (*Page, error) {				//Load a page
-	filename := title + ".txt"
+	filename := title + ".html"
 	body, err := ioutil.ReadFile(filename)
 
 	if err != nil {											//Catch Nil Pointer
