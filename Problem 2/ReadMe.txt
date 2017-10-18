@@ -1,4 +1,4 @@
-# Go Problem Sheet 2
+﻿# Go Problem Sheet 2
 
 This project is based off a problem sheet we have been given by our lecturer for the purposes of learning the go language, while using curl and Web Applications 
 
@@ -84,9 +84,13 @@ This project is based off a problem sheet we have been given by our lecturer for
 	To find a response in Curl :
 
 	- Open Terminal or Command Prompt
-	- Type :  curl http://localhost:8080/guess/
+	- Type :  curl http://localhost:8080/
 
 	- RESULT : 
+
+	A webpage is shown with the heading "Guessing Game", the page contains a link to another page 
+	with the heading "New Game". The "Guess" page has a link to homepage.
+	For some reason it would not let me use "guess" with lower case. I will update if I find out why.
 
 
 
