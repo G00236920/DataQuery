@@ -12,38 +12,26 @@ type Page struct {
 }
 
 func (p *Page) save() error {
-
 	filename := p.Title + ".txt"
 	return ioutil.WriteFile(filename, p.Body, 0600)
-
 }
 
 func loadPage(title string) (*Page, error) {
-
 	filename := title + ".txt"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 	return &Page{Title: title, Body: body}, nil
-
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Type", "text")
-
-	title := r.URL.Path[len("/view/"):]
-
+	title := r.URL.Path[len("/"):]
 	p, _ := loadPage(title)
-
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
-
+	fmt.Fprintf(w, "<div>%s</div>", p.Body)
 }
 
 func main() {
-
-	http.ListenAndServe(":8080", nil)
 	http.HandleFunc("/", viewHandler)
-
+	http.ListenAndServe(":8080", nil)
 }
