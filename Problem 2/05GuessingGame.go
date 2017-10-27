@@ -17,29 +17,29 @@ func templateHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http req
 
 
 		// Try to read the cookie.
-		var cookie, err = r.Cookie("Target")
+		var cookie, err = r.Cookie("Target")	//Variables for cookie and its errors
 		
 		if err == nil {
 			// If we could read it, try to convert its value to an int.
-			if(Target == 0){
-				rand.Seed(time.Now().UnixNano())
-				Target = rand.Intn(19) + 1
-				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target))
+			if(Target == 0){												//if Target has no random value yet
+				rand.Seed(time.Now().UnixNano())							//Seed using clock
+				Target = rand.Intn(19) + 1									//Random Number
+				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target))	//Convert to string just because
 			}else{
-				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target)) 
+				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target)) 	//Convert to string just because
 				
 			}
 		}
 	
 		// Create a cookie instance and set the cookie.
-		cookie = &http.Cookie{
+		cookie = &http.Cookie{												//Cookie Response	
 	
-			Name: "Target",
-			Value: "Target",
+			Name: "Target",													//Name of Cookie
+			Value: "Target",												//Value Cookie Holds
 	
 		}
 
-		http.SetCookie(w, cookie)
+		http.SetCookie(w, cookie)											//Set the Cookie
 
 	t, _ := template.ParseFiles("template/guess.html")											//Parse the template File
 	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20"})						// Execute the Tmpl file

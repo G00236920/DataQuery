@@ -19,36 +19,37 @@ type TemplateData struct {
 func templateHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http requests
 
 		// Try to read the cookie.
-		var cookie, err = r.Cookie("Target")
-
-		var usersGuess = r.FormValue("guess")
+		var cookie, err = r.Cookie("Target")	//Variables for cookie and its errors
+		
+		var usersGuess = r.FormValue("guess")	//Get input that user added to text field
 
 		fmt.Printf("\nUser Guessed: %s",usersGuess)
 		
 		if err == nil {
 			// If we could read it, try to convert its value to an int.
-			if(Target == 0){
-				rand.Seed(time.Now().UnixNano())
-				Target = rand.Intn(20) + 1
-				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target))
+			if(Target == 0){												//if Target has no random value yet
+				rand.Seed(time.Now().UnixNano())							//Seed using clock
+				Target = rand.Intn(19) + 1									//Random Number
+				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target))	//Convert to string just because
 			}else{
-				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target)) 
+				fmt.Printf("\nRandom Number is: %s",strconv.Itoa(Target)) 	//Convert to string just because
+				
 			}
 		}
 	
 		// Create a cookie instance and set the cookie.
-		cookie = &http.Cookie{
+		cookie = &http.Cookie{												//Cookie Response	
 	
-			Name: "Target",
-			Value: "Target",
+			Name: "Target",													//Name of Cookie
+			Value: "Target",												//Value Cookie Holds
 	
 		}
 
-		http.SetCookie(w, cookie)
+		http.SetCookie(w, cookie)											//Set the Cookie
 
-		textGuess := TemplateData{Guess: usersGuess}
+		textGuess := TemplateData{Guess: usersGuess}						//Change text when User Guesses
 
-		status := compare(textGuess)
+		status := compare(textGuess)										//Compare Guess with random number
 
 	t, _ := template.ParseFiles("template/guess.html")											//Parse the template File
 	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20", Guess: usersGuess, Status: status, Button: button})						// Execute the Tmpl file
@@ -74,20 +75,20 @@ func compare(textGuess TemplateData) string{
 	guessInt  , _ := strconv.Atoi(textGuess.Guess)
 
 	if(count == 0){
-		button ="Guess"
-		count++
-		return "You Have Not Guessed Yet!"
-	}else if(guessInt == Target){
-		Target = rand.Intn(20) + 1
-		count = 0
-		button ="New_Game"
-		return "You Have Guessed Correctly"
-	}else if (guessInt > Target){
-		return "You Have Guessed Too High"
-	}else if (guessInt < Target){
-		return "You Have Guessed Too Low"
+		button ="Guess"									//Reset button Text
+		count++											//Increment Game counter
+		return "You Have Not Guessed Yet!"				//return text to user
+	}else if(guessInt == Target){						//User Guessed Correctly
+		Target = rand.Intn(20) + 1						//Generate New random Number
+		count = 0										//Reset Game Counter
+		button ="New_Game"								//New game Button
+		return "You Have Guessed Correctly"				//return text to user
+	}else if (guessInt > Target){						//User Guessed High
+		return "You Have Guessed Too High"				//return text to user
+	}else if (guessInt < Target){						//User Guessed Low
+		return "You Have Guessed Too Low"				//return text to user
 	}else{
-		return "You Have Not entered an Integer Value"
+		return "You Have Not entered an Integer Value"	//Catch All - Dosent Work
 	}
 
 }
