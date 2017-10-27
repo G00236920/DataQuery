@@ -131,7 +131,26 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 	
 —Part 5—
+	Objective:
 
+	In the /guess handler check if the cookie called target is set. If it is not, 
+	generate a random number between 1 and 20 and set a cookie called target to that value 
+	in the response. Otherwise, leave the cookie at its current value.
+
+	
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 05GuessingGame.go
+	- The type 05GuessingGame or ./05GuessingGame in terminal
+	- Go to http://localhost:8080/ in a web browser
+
+	- RESULT : A random number is Generated and Stored as a Cookie, I have Shown this number in the Cmd 
+	for testing Purposes.
+
+	
 —Part 6—
 
 —Part 7—
