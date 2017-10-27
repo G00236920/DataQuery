@@ -11,13 +11,17 @@ import (
 
 type TemplateData struct {
 	Message string
+	Guess string
 }
 
 func templateHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http requests
 
-
 		// Try to read the cookie.
 		var cookie, err = r.Cookie("Target")
+
+		var usersGuess = r.FormValue("guess")
+
+		fmt.Printf("\nUser Guessed: %s",usersGuess)
 		
 		if err == nil {
 			// If we could read it, try to convert its value to an int.
@@ -41,7 +45,7 @@ func templateHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http req
 		http.SetCookie(w, cookie)
 
 	t, _ := template.ParseFiles("template/guess.html")											//Parse the template File
-	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20"})						// Execute the Tmpl file
+	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20",Guess: usersGuess})						// Execute the Tmpl file
 
 }
 
