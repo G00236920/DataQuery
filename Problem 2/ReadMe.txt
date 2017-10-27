@@ -28,7 +28,9 @@ This project is based off a problem sheet we have been given by our lecturer for
 	
 	To find a response in Curl :
 
-	- Open Terminal or Command Prompt
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 01GuessingGame.go
+	- The type 01GuessingGame or ./01GuessingGame in terminal
 	- Type :  curl -I http://localhost:8080/test
 
 	- RESULT : 
@@ -58,7 +60,9 @@ This project is based off a problem sheet we have been given by our lecturer for
 	
 	To find a response in Curl :
 
-	- Open Terminal or Command Prompt
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 02GuessingGame.go
+	- The type 02GuessingGame or ./02GuessingGame in terminal
 	- Type :  curl http://localhost:8080/test
 
 	- RESULT : 
@@ -82,9 +86,11 @@ This project is based off a problem sheet we have been given by our lecturer for
 	Implementation:
 	
 	To find a response in Curl :
-
-	- Open Terminal or Command Prompt
-	- Type :  curl http://localhost:8080/
+	
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 03GuessingGame.go
+	- The type 03GuessingGame or ./03GuessingGame in terminal
+	- Go to http://localhost:8080/
 
 	- RESULT : 
 
@@ -96,6 +102,34 @@ This project is based off a problem sheet we have been given by our lecturer for
 
 —Part 4—
 
+	Objective:
+
+	Part 1: Create a new route in your application at /guess. Have it serve a new page called guess.html. 
+	Use the same Bootstrap code for the page as in index.html but add a level 2 heading with the text 
+	“Guess a number between 1 and 20”. Add a form, with a text input with the name “guess” and a submit 
+	button with the label “Guess”. The action of the form should be /guess and the method should be GET.
+
+	Part 2: Change the web application to use the guess.tmpl file as a template. Add a single variable to 
+	the template called Message and create a struct in Go containing a single string. Create an instance 
+	of the struct with the string set to “Guess a number between 1 and 20” and have the template render this 
+	in the H2 tag.
+
+	
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 04GuessingGame.go
+	- The type 04GuessingGame or ./04GuessingGame in terminal
+	- Go to http://localhost:8080/ in a web browser
+
+	- RESULT : 
+
+	after part 1 a nicer visual page is created that allows for input of a number(as it is not 
+	verified, it could be a string at this point).
+
+	
 —Part 5—
 
 —Part 6—

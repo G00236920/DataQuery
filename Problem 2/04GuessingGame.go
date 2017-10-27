@@ -2,43 +2,51 @@ package main
 
 import (													//Imports
 	"fmt"
-	"io/ioutil"
 	"net/http"
+	"text/template"
 )
 
-type Page struct {											//Page Struct to store attributes of the page
-	Title string
-	Body  []byte
+type TemplateData struct {
+	Message string
 }
 
-func (p *Page) save() error {								// write to a page 
-	filename := p.Title + ".html"
-	return ioutil.WriteFile(filename, p.Body, 0600)
+func templateHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http requests
+
+	t, _ := template.ParseFiles("template/guess.html")											//Parse the template File
+	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20"})						// Execute the Tmpl file
+
 }
 
-func loadPage(title string) (*Page, error) {				//Load a page
-	filename := title + ".html"
-	body, err := ioutil.ReadFile(filename)
+func cookieHandler(w http.ResponseWriter, r *http.Request) {
+	
+	randomNum := 0
 
-	if err != nil {											//Catch Nil Pointer
-		return nil, err
+	// Try to read the cookie.
+	var cookie, err = r.Cookie("randomNum")
+	
+	if err == nil {
+		// If we could read it, try to convert its value to an int.
+		randomNum = 10
 	}
 
-	return &Page{Title: title, Body: body}, nil				//Return Page and Values
-}
+	// Create a cookie instance and set the cookie.
+	cookie = &http.Cookie{
 
-func viewHandler(w http.ResponseWriter, r *http.Request) {	//Handle Http requests
-	title := r.URL.Path[len("/"):]
-	
-	if len(title) == 0 {									//Make index the Home page for localhost:8080
-		title = "index"	 									//Im sure there is an official way to do this but
-	}														//This will do until I know what it is
+		Name: "randomNum",
+		Value: "Test",
+	}
 
-	p, _ := loadPage(title)									//Page
-	fmt.Fprintf(w, "<div>%s</div>", p.Body)					//Print out
+	http.SetCookie(w, cookie)
+
+	fmt.Fprintf(w, "Random Number %d .", randomNum)
+
 }
 
 func main() {
-	http.HandleFunc("/", viewHandler)						//Call Http Handler
+
+	http.Handle("/", http.FileServer(http.Dir("./")))		//Handle http request
+	http.HandleFunc("/guess",templateHandler)				//handle requests for templates
+	//http.HandleFunc("/guess", cookieHandler)
 	http.ListenAndServe(":8080", nil)						//Listen and report from port 8080
+
 }
