@@ -149,12 +149,63 @@ This project is based off a problem sheet we have been given by our lecturer for
 	for testing Purposes.
 
 —Part 6—
+	Objective:
+
+	Have the /guess handler check if a URL encoded variable called guess has been set to an integer. 
+	If it has, have the text “You guessed {guess}.” inserted into the template where {guess} is replaced 
+	with the value of guess.
+	
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 05GuessingGame.go
+	- The type 05GuessingGame or ./05GuessingGame in terminal
+	- Go to http://localhost:8080/ in a web browser
+
+	- RESULT : The Users Input in Taken in and stored. This Input is then printed to screen.
 
 —Part 7—
+	Objective:
+
+	If the target cookie and the guess variable are both set, then have the /guess handler compare them. 
+	If they are equal, set the target cookie to another randomly generated integer, and have the template 
+	display a congratulations message and a link to create a new game. Otherwise, have the template display 
+	a message telling the user what their guess was and whether it was too high or too low.
+	
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 05GuessingGame.go
+	- The type 05GuessingGame or ./05GuessingGame in terminal
+	- Go to http://localhost:8080/ in a web browser
+
+	- RESULT : The user can now input a value to the text box and make a Guess at the random number,
+	if the user guesses correctly, The user is prompted that they did just that. If the user guesses too high, or too low
+	they also are prompted for this, If the user is correct the "Guess Button" is changed to "New_Game".
+	I encountered an issue here where it wouldnt let me put a space, but I am short of time for the assignment Deadline and 
+	Decided this is now a feature.
 
 —Part 8—
+	Objective:
 
+	Change your HTML form in guess.html to use the POST method instead. Make sure your application still works, 
+	bug fixing it if necessary.
 
+	
+	Implementation:
+	
+	To find a response in Curl :
+
+	- Open a Cmd and cd to file Path	
+	- Build the Go Prgram using Command Go Build 05GuessingGame.go
+	- The type 05GuessingGame or ./05GuessingGame in terminal
+	- Go to http://localhost:8080/ in a web browser
+
+	- RESULT : 
 
 
 
