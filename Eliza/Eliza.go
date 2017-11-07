@@ -1,47 +1,44 @@
 package main
 
 import (
-	"fmt" //Imports
 	"net/http"
+	"strconv"
 	"text/template"
 )
 
-type TemplateData struct {
-	Message string
+type Message struct {
+	Heading      string
+	UserMessage  string
+	ElizaMessage string
+	Button       string
+}
+
+//With this Project we had the Oppertunity to use Boostrap for the implementation of the GUI in html format
+//I decided to Design my own instead
+
+func main() {
+
+	var Messages []Message // an empty list
+
+	for i := 0; i < 3; i++ {
+
+		Messages = append(Messages,
+			Message{UserMessage: "I Am the User" + strconv.Itoa(i), ElizaMessage: "I am Eliza" + strconv.Itoa(i)})
+		//Add to list of messages between user and Eliza
+
+		//fmt.Println(Messages[i].UserMessage, Messages[i].ElizaMessage)
+
+	}
+
+	http.Handle("/", http.FileServer(http.Dir("./"))) //Handle http request
+	http.HandleFunc("/chat", templateHandler)         //handle requests for templates
+	http.ListenAndServe(":8080", nil)                 //Listen and report from port 8080
+
 }
 
 func templateHandler(w http.ResponseWriter, r *http.Request) { //Handle Http requests
 
-	// Try to read the cookie.
-	var cookie, err = r.Cookie("Target") //Variables for cookie and its errors
-
-	var usersGuess = r.FormValue("guess") //Get input that user added to text field
-
-	fmt.Printf("\nUser Guessed: %s", usersGuess)
-
-	if err == nil {
-
-	}
-
-	// Create a cookie instance and set the cookie.
-	cookie = &http.Cookie{ //Cookie Response
-
-		Name:  "Target", //Name of Cookie
-		Value: "Target", //Value Cookie Holds
-
-	}
-
-	http.SetCookie(w, cookie) //Set the Cookie
-
-	t, _ := template.ParseFiles("template/guess.html")                     //Parse the template File
-	t.Execute(w, TemplateData{Message: "Guess a Number Between 1 and 20"}) // Execute the Tmpl file
-
-}
-
-func main() {
-
-	http.Handle("/", http.FileServer(http.Dir("./"))) //Handle http request
-	http.HandleFunc("/guess", templateHandler)        //handle requests for templates
-	http.ListenAndServe(":8080", nil)                 //Listen and report from port 8080
+	t, _ := template.ParseFiles("chat/eliza.html")    //Parse the template File
+	t.Execute(w, Message{Heading: "Chat with ELIZA"}) // Execute the Tmpl file
 
 }

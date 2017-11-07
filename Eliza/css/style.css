@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+#inputbox {
+  position: fixed;
+  bottom: 20px;
+  height: 20%;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#chatbox {
+    text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:rgba(255, 248, 220, 0.6);
+    height:80%;
+    width:80%;
+    border:1px solid rgb(21, 22, 22);
+    overflow: scroll; 
+    border-radius: 25px;
+}
+
+#Button1 {
+    color: blue;
+}
+
+h1 {
+    text-align:center;
+    color: blue;
+}
