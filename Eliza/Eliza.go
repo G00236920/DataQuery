@@ -2,15 +2,12 @@ package main
 
 import (
 	"net/http"
-	"strconv"
 	"text/template"
 )
 
-type Message struct {
-	Heading      string
-	UserMessage  string
-	ElizaMessage string
-	Button       string
+type Conversation struct {
+	User     string
+	Computer string
 }
 
 //With this Project we had the Oppertunity to use Boostrap for the implementation of the GUI in html format
@@ -18,17 +15,7 @@ type Message struct {
 
 func main() {
 
-	var Messages []Message // an empty list
-
-	for i := 0; i < 3; i++ {
-
-		Messages = append(Messages,
-			Message{UserMessage: "I Am the User" + strconv.Itoa(i), ElizaMessage: "I am Eliza" + strconv.Itoa(i)})
-		//Add to list of messages between user and Eliza
-
-		//fmt.Println(Messages[i].UserMessage, Messages[i].ElizaMessage)
-
-	}
+	//Add to list of messages between user and Eliza
 
 	http.Handle("/", http.FileServer(http.Dir("./"))) //Handle http request
 	http.HandleFunc("/chat", templateHandler)         //handle requests for templates
@@ -38,7 +25,31 @@ func main() {
 
 func templateHandler(w http.ResponseWriter, r *http.Request) { //Handle Http requests
 
-	t, _ := template.ParseFiles("chat/eliza.html")    //Parse the template File
-	t.Execute(w, Message{Heading: "Chat with ELIZA"}) // Execute the Tmpl file
+	var cookie, _ = r.Cookie("myList") //Variables for cookie and its errors
 
+	var usersAnswer = r.FormValue("userinput")
+
+	type convoList []Conversation
+
+	mylist := convoList{}
+
+	mylist = append(mylist, Conversation{Computer: "New", User: usersAnswer})
+
+	cookie = &http.Cookie{ //Cookie Response
+
+		Name:  "myList", //Name of Cookie
+		Value: "myList", //Value Cookie Holds
+
+	}
+
+	http.SetCookie(w, cookie) //Set the Cookie
+
+	t, _ := template.ParseFiles("chat/eliza.html") //Parse the template File
+
+	run(t, w, mylist)
+}
+
+func run(t *template.Template, w http.ResponseWriter, myList []Conversation) {
+
+	t.Execute(w, myList) // Execute the Tmpl file
 }

@@ -6,6 +6,20 @@ html, body {
     height: 100%;
 }
 
+body {
+    background-image: url("http://www.worldforum.ai/wp-content/uploads/2017/03/AI-world-forum-background-cropped-1920x1000.jpg");
+}
+
+h1 {
+    text-align:center;
+    color: white;
+}
+
+#Heading {
+    text-align:center;
+    color: white;
+}
+
 #inputbox {
   position: fixed;
   bottom: 20px;
@@ -29,10 +43,5 @@ html, body {
 }
 
 #Button1 {
-    color: blue;
-}
-
-h1 {
-    text-align:center;
-    color: blue;
+    color: white;
 }
