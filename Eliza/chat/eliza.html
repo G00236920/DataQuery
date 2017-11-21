@@ -47,15 +47,17 @@
             data : { 
               Question: $("#userinput").val() 
             },
+            success: function(test){
+              q = test;
+
+              $("#list").append('<div id="UserTalks"  align="right">' + $("#userinput").val() +'</div><br/><br/><div id="ElizaTalks" align="left" >'+q+'</div><br/><br/>');
+              $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+              $("#inputform").trigger('reset');
+            }
           });
 
           event.preventDefault();
 
-          q = "";
-
-          $("#list").append('<div id="UserTalks"  align="right">' + $("#userinput").val() +'</div><br/><br/><div id="ElizaTalks" align="left" >'+q+'</div><br/><br/>');
-          $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
-          $("#inputform").trigger('reset');
 
         })
 
