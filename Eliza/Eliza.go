@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"net/http"
 	"regexp"
-	"strings"
 	"text/template"
 )
 
@@ -102,7 +101,7 @@ var psychobable = [][]string{
 		"Do you think it is $1??",
 		"Perhaps it's $1? -- what do you think?",
 		"If it were $1?, what would you do?",
-		"It could well be that $1?."},
+		"It could well be $1?."},
 
 	{`It is ([^.?!]*)[.?!]?`,
 		"You seem very certain.",
@@ -220,6 +219,26 @@ var psychobable = [][]string{
 		"How do you feel when you say that?"},
 }
 
+// List the reflections.
+var reflections = [][]string{
+	{`am`, `are`},
+	{`are`, `am`},
+	{`was`, `were`},
+	{`i am`, `you are`},
+	{`i`, `you`},
+	{`i'd`, `you would`},
+	{`i've`, `you have`},
+	{`i'll`, `you will`},
+	{`my`, `your`},
+	{`you've`, `I have`},
+	{`you'll`, `I will`},
+	{`your`, `my`},
+	{`yours`, `mine`},
+	{`you`, `me`},
+	{`me`, `you`},
+	{`do`, `dont`},
+}
+
 //With this Project we had the Oppertunity to use Bootstrap for the implementation of the GUI in html format
 //I decided to Design my own instead
 
@@ -258,7 +277,7 @@ func responseFromEliza(usersAnswer string) string {
 
 		if matched := re.MatchString(usersAnswer); matched { //Compare question with the users input
 
-			return re.ReplaceAllString(usersAnswer, psychobable[counter][row]) //Replace the question with the answer for output
+			return re.ReplaceAllString(Reflect("I think you are ugly"), psychobable[counter][row]) //Replace the question with the answer for output
 
 		}
 		counter++ //Increment the index
@@ -290,30 +309,9 @@ func receiveAjax(w http.ResponseWriter, r *http.Request) {
 }
 
 func Reflect(input string) string {
-	// Split the input on word boundaries.
-	boundaries := regexp.MustCompile(`\b`)
-	tokens := boundaries.Split(input, -1)
 
-	// List the reflections.
-	reflections := [][]string{
-		{`I`, `you`},
-		{`me`, `you`},
-		{`you`, `me`},
-		{`my`, `your`},
-		{`your`, `my`},
-		{`Are`, `Am`},
-	}
+	//Reflect the input so that it changes the perspective of the output from either
+	//you to eliza or from eliza to you
 
-	// Loop through each token, reflecting it if there's a match.
-	for i, token := range tokens {
-		for _, reflection := range reflections {
-			if matched, _ := regexp.MatchString(reflection[0], token); matched {
-				tokens[i] = reflection[1]
-				break
-			}
-		}
-	}
-
-	// Put the tokens back together.
-	return strings.Join(tokens, ``)
+	return input
 }
