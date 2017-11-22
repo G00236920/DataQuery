@@ -277,7 +277,7 @@ func responseFromEliza(usersAnswer string) string {
 
 		if matched := re.MatchString(usersAnswer); matched { //Compare question with the users input
 
-			return re.ReplaceAllString(Reflect("I think you are ugly"), psychobable[counter][row]) //Replace the question with the answer for output
+			return re.ReplaceAllString(Reflect(usersAnswer), psychobable[counter][row]) //Replace the question with the answer for output
 
 		}
 		counter++ //Increment the index
