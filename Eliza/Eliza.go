@@ -313,5 +313,7 @@ func Reflect(input string) string {
 	//Reflect the input so that it changes the perspective of the output from either
 	//you to eliza or from eliza to you
 
+	//test
+
 	return input
 }
