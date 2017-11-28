@@ -11,14 +11,14 @@ import (
 var str = []string{
 	"People say I look like both my mother and father.",
 	"Father was a teacher.",
-	"I was my father’s favourite.",
+	"I was my Father’s favourite.",
 	"I’m looking forward to the weekend.",
 	"My grandfather was French!",
 }
 
 func main() {
 
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 5; i++ {
 
 		//User Input strings
 		fmt.Println("intput: " + str[i] + "\n")
@@ -33,7 +33,7 @@ func main() {
 //Response function
 func ElizaResponse(input string) string {
 
-	re := regexp.MustCompile("(?i)" + `([^.?!]*)[.?!]? father([^.?!]*)[.?!]?`) //Read the input for the question
+	re := regexp.MustCompile("(?i)" + `\bfather\b`) //Read the input for the question
 
 	//If the input mentions Father
 	if matched := re.MatchString(input); matched { //Compare question with the users input

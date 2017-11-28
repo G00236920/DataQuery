@@ -17,7 +17,7 @@ var str = []string{
 
 func main() {
 
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 5; i++ {
 
 		//User Input strings
 		fmt.Println("intput: " + str[i] + "\n")
