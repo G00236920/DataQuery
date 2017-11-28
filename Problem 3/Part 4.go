@@ -12,7 +12,7 @@ var str = []string{
 	"People say I look like both my mother and father.",
 	"Father was a teacher.",
 	"I was my Father’s favourite.",
-	"I’m looking forward to the weekend.",
+	"I'm looking forward to the weekend.",
 	"My grandfather was French!",
 	"I am happy.",
 	"I am not happy with your responses.",
@@ -37,7 +37,7 @@ func main() {
 //Response function
 func ElizaResponse(input string) string {
 
-	re := regexp.MustCompile("(?i)" + `(?i)(i[' a]*m) (.*)`) //Adapted for Part 4
+	re := regexp.MustCompile("(?i)" + `(?i)i\'?(?:\s?am|m)([^.?!]*)[.?!]?`) //Adapted for Part 4
 
 	if matched := re.MatchString(input); matched { //Compare question with the users input
 

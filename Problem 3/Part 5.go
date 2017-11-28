@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -12,12 +13,12 @@ var str = []string{
 	"People say I look like both my mother and father.",
 	"Father was a teacher.",
 	"I was my Father’s favourite.",
-	"I’m looking forward to the weekend.",
+	"I'm looking forward to the weekend.",
 	"My grandfather was French!",
 	"I am happy.",
 	"I am not happy with your responses.",
 	"I am not sure that you understand the effect that your questions are having on me.",
-	"I am supposed to just take what you’re saying at face value?",
+	"I am supposed to just take what you're saying at face value?",
 }
 
 func main() {
@@ -37,11 +38,11 @@ func main() {
 //Response function
 func ElizaResponse(input string) string {
 
-	re := regexp.MustCompile("(?i)" + `(?i)(i[' a]*m) (.*)`) //Adapted for Part 4
+	re := regexp.MustCompile("(?i)" + `(?i)i\'?(?:\s?am|m)([^.?!]*)[.?!]?`) //Adapted for Part 4
 
 	if matched := re.MatchString(input); matched { //Compare question with the users input
 
-		return re.ReplaceAllString(input, "How do you know you are $1??")
+		return re.ReplaceAllString(Reflect(input), "How do you know you are $1??")
 
 	}
 
@@ -67,4 +68,32 @@ func ElizaResponse(input string) string {
 	//Return random answer
 	return answers[rand.Intn(len(answers))]
 
+}
+
+func Reflect(input string) string {
+
+	// Split the input on word boundaries.
+	boundaries := regexp.MustCompile("(?i)" + `\b`)
+	tokens := boundaries.Split(input, -1)
+
+	// List the reflections.
+	reflections := [][]string{
+		{`you're `, `i'm`},
+		{`your`, `my`},
+		{`you`, `I`},
+		{`me`, `you`},
+	}
+
+	// Loop through each token, reflecting it if there's a match.
+	for i, token := range tokens {
+		for _, reflection := range reflections {
+			if matched, _ := regexp.MatchString(reflection[0], token); matched {
+				tokens[i] = reflection[1]
+				break
+			}
+		}
+	}
+
+	// Put the tokens back together.
+	return strings.Join(tokens, ``)
 }
