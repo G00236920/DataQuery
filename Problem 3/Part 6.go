@@ -19,14 +19,31 @@ var str = []string{
 	"I am not happy with your responses.",
 	"I am not sure that you understand the effect that your questions are having on me.",
 	"I am supposed to just take what you're saying at face value?",
-	"I am tired of all the assignments",
-	"I am Looking forward to some time off",
-	"I am Hungry for chicken and waffles",
+	"Why can't I drive my car without a license",
+	"Why don't you go for a walk?",
+	"Are you human?",
+}
+
+var psychobable = [][]string{
+	{`Why don\'?t you ([^\?]*)\??`,
+		"Perhaps eventually I will $1?."},
+
+	{`Why can\'?t I ([^\?]*)\??`,
+		"Do you think you should be able to $1??"},
+
+	{`(?i)i\'?(?:\s?am|m)([^.?!]*)[.?!]?`,
+		"How do you know you are $1??"},
+
+	{`Are you ([^\?]*)\??`,
+		"I may be $1? -- what do you think?"},
+
+	{`\bfather\b`,
+		"Why don’t you tell me more about your father?"},
 }
 
 func main() {
 
-	for i := 0; i < 9; i++ {
+	for i := 0; i < 12; i++ {
 
 		//User Input strings
 		fmt.Println("intput: " + str[i] + "\n")
@@ -41,20 +58,21 @@ func main() {
 //Response function
 func ElizaResponse(input string) string {
 
-	re := regexp.MustCompile("(?i)" + `(?i)i\'?(?:\s?am|m)([^.?!]*)[.?!]?`) //Adapted for Part 4
+	var counter int
 
-	if matched := re.MatchString(input); matched { //Compare question with the users input
+	for range psychobable {
 
-		return re.ReplaceAllString(Reflect(input), "How do you know you are $1??")
+		re := regexp.MustCompile("(?i)" + psychobable[counter][0]) //Read the find index in the row - for the question
 
-	}
+		if matched := re.MatchString(input); matched { //Compare question with the users input
 
-	re2 := regexp.MustCompile("(?i)" + `\bfather\b`) //Read the input for the question
+			str := re.ReplaceAllString(input, psychobable[counter][1]) //Replace the question with the answer for output
 
-	//If the input mentions Father
-	if matched := re2.MatchString(input); matched { //Compare question with the users input
+			return str
 
-		return "Why don’t you tell me more about your father?"
+		}
+
+		counter++ //Increment the index
 
 	}
 
@@ -83,6 +101,7 @@ func Reflect(input string) string {
 	reflections := [][]string{
 		{`you're `, `i'm`},
 		{`your`, `my`},
+		{`my`, `your`},
 		{`you`, `I`},
 		{`me`, `you`},
 	}
